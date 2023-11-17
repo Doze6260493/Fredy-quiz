@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #FF5733, #0F4E7D, #39FF14);
+            background-size: 400% 400%;
+            animation: gradient 10s linear infinite;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #box1 {
+            background-color: #FF5733;
+        }
+
+        #box2 {
+            background-color: #39FF14;
+        }
+
+        #box3 {
+            background-color: #0F4E7D;
+        }
+    </style>
+</head>
+<body>
+                <div class="container">
+                    <a href="Niveles de matematicas.html" style="text-decoration: none;">
+                        <div class="box" id="box1">Matematicas</div>
+                    </a>
+                    <a href="Niveles de fisica.html" style="text-decoration: none;">
+                        <div class="box" id="box2">Fisica</div>
+                    </a>
+                    <a href="Niveles de estadistica.html" style="text-decoration: none;">
+                        <div class="box" id="box3">Estadistica</div>
+                    </a>
+                </div>
+            </body>
+            </html>

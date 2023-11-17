@@ -1,0 +1,46 @@
+ /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 150px; /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    margin-right: 20px;
+}
+
+.message-box {
+    background-color: #000000;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    animation: moveMessage 2s infinite alternate;
+}
+
+.message {
+    margin: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+@keyframes moveMessage {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(20px);
+    }
+}

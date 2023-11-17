@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #0F4E7D;
+            color: #fff;
+        }
+
+        .nivel {
+            background-color: #FDE54D;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+        }
+
+        button {
+            background-color: #39FF14;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00A200;
+        }
+
+        .mensaje {
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="nivel">
+        <p>Pregunta 5:  En una urna, hay 6 bolas numeradas del 1 al 6. Si seleccionas 3 bolas al azar con reemplazo, ¿cuál es la probabilidad de que la suma de los números en las tres bolas sea mayor o igual a 12?</p>
+        <input type="text" id="respuesta5">
+        <button onclick="verificarRespuesta(5, '5/108')">Verificar</button>
+    </div>
+
+    <div class="mensaje" id="mensaje1"></div>
+    <div class "mensaje" id="mensaje2"></div>
+    <div class="mensaje" id="mensaje3"></div>
+    <div class "mensaje" id="mensaje4"></div>
+    <div class "mensaje" id="mensaje5"></div>
+
+     
+
+    <script>
+        // Contadores por nivel
+        let contadorNivel1 = 0;
+        let contadorNivel2 = 0;
+        let contadorNivel3 = 0;
+
+        function actualizarContadorNivel() {
+            document.getElementById("contador1").textContent = "Contador nivel 1: " + contadorNivel1;
+            document.getElementById("contador2").textContent = "Contador nivel 2: " + contadorNivel2;
+            document.getElementById("contador3").textContent = "Contador nivel 3: " + contadorNivel3;
+        }
+
+        function verificarRespuesta(nivel, respuestaCorrecta) {
+            const respuesta = document.getElementById("respuesta" + nivel).value;
+            const mensaje = document.getElementById("mensaje" + nivel);
+
+            if (respuesta === respuestaCorrecta) {
+                mensaje.textContent = "¡Correcto! Avanzas al siguiente nivel.";
+                // Incrementar el contador del nivel actual
+                if (nivel === 1) {
+                    contadorNivel1++;
+                } else if (nivel === 2) {
+                    contadorNivel2++;
+                } else if (nivel === 3) {
+                    contadorNivel3++;
+                }
+                // Actualizar los contadores en la página
+                actualizarContadorNivel();
+            } else {
+                mensaje.textContent = "¡Fallaste! La respuesta correcta era: " + respuestaCorrecta;
+            }
+        }
+    </script>
+</body>
+</html>

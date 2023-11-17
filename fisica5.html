@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ff004cc4;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            background-color: #FDE54D;
+            color: #333;
+            padding: 10px;
+        }
+
+        .pregunta {
+            margin: 20px;
+        }
+
+        .respuesta {
+            background-color: #0F4E7D;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        #contador {
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba tus conocimientos de física: Movimiento Armónico Simple</h1>
+    <div class="pregunta" id="pregunta1">
+        <p>Ejercicio 1: Amplitud y Período</p>
+        <p>Dado un sistema en MAS con una amplitud de 3 cm y un período de 2 segundos, calcula la frecuencia, la frecuencia angular y la velocidad máxima del sistema.</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 1)">A) Frecuencia: 0.5 Hz, Frecuencia Angular: π rad/s, Velocidad Máxima: 3 cm/s</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 1)">B) Frecuencia: 2 Hz, Frecuencia Angular: 4π rad/s, Velocidad Máxima: 3 cm/s</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 1)">C) Frecuencia: 0.5 Hz, Frecuencia Angular: 2π rad/s, Velocidad Máxima: 6 cm/s</button>
+    </div>
+    <div class="pregunta" id="pregunta2">
+        <p>Ejercicio 2: Frecuencia Angular y Fase Inicial</p>
+        <p>Si un sistema en MAS tiene una frecuencia angular de 4 rad/s y una fase inicial de π/3 radianes, encuentra la amplitud máxima, el período y la frecuencia del sistema.</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 2)">A) Amplitud Máxima: 4 cm, Período: π/2 segundos, Frecuencia: 2 Hz</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 2)">B) Amplitud Máxima: 4 cm, Período: π segundos, Frecuencia: 4 Hz</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 2)">C) Amplitud Máxima: 4 cm, Período: π/4 segundos, Frecuencia: 4 Hz</button>
+    </div>
+    <div class="pregunta" id="pregunta3">
+        <p>Ejercicio 3: Velocidad Máxima</p>
+        <p>Un objeto en movimiento armónico simple tiene una amplitud de 6 cm y una frecuencia angular de 2.5 rad/s. Calcula la velocidad máxima del objeto en m/s.</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 3)">A) Velocidad Máxima: 0.025 m/s</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 3)">B) Velocidad Máxima: 0.15 m/s</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 3)">C) Velocidad Máxima: 15 m/s</button>
+    </div>
+    <div class="pregunta" id="pregunta4">
+        <p>Ejercicio 4: Desplazamiento en un Tiempo Dado</p>
+        <p>Supongamos que un objeto en MAS tiene una amplitud de 4 m, una frecuencia de 1 Hz y una fase inicial de 0 radianes. ¿Cuál es el desplazamiento del objeto en el tiempo t = 0.5 segundos?</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 4)">A) Desplazamiento: 4 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 4)">B) Desplazamiento: -4 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 4)">C) Desplazamiento: 0 m</button>
+    </div>
+    <div class="pregunta" id="pregunta5">
+        <p>Ejercicio 5: Período y Amplitud</p>
+        <p>Si un resorte oscila con un período de 0.8 segundos y una velocidad máxima de 2 m/s, ¿cuál es la amplitud de su movimiento?</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 5)">A) Amplitud: 2.5 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 5)">B) Amplitud: 1.6 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 5)">C) Amplitud: 4 m</button>
+    </div>
+    <div class="pregunta" id="pregunta6">
+        <p>Ejercicio 6: Frecuencia y Fase Inicial</p>
+        <p>Dado que un objeto en MAS tiene una amplitud de 5 cm, un período de 0.4 segundos y una velocidad máxima de 10 cm/s, calcula la frecuencia angular y la fase inicial.</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 6)">A) Frecuencia Angular: 2π rad/s, Fase Inicial: 0 radianes</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 6)">B) Frecuencia Angular: 10π rad/s, Fase Inicial: π/2 radianes</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 6)">C) Frecuencia Angular: 0.5π rad/s, Fase Inicial: π radianes</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="contador">
+        Preguntas correctas: <span id="correctas">0</span> | Preguntas incorrectas: <span id="incorrectas">0</span>
+    </div>
+
+    <script>
+        let preguntasRespondidas = [false, false, false, false, false, false];
+        let preguntasCorrectas = 0;
+        let preguntasIncorrectas = 0;
+
+        function verificarRespuesta(respuesta, pregunta) {
+            if (respuesta === 1) {
+                preguntasCorrectas++;
+                document.getElementById("correctas").textContent = preguntasCorrectas;
+                document.getElementById("resultado").innerHTML = "¡Bien hecho! Respuesta correcta.";
+                document.body.style.backgroundColor = "#39FF14";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 3000);
+            } else {
+                preguntasIncorrectas++;
+                document.getElementById("incorrectas").textContent = preguntasIncorrectas;
+                const respuestas = [
+                    "B) Frecuencia: 2 Hz, Frecuencia Angular: 4π rad/s, Velocidad Máxima: 3 cm/s",
+                    "C) Amplitud Máxima: 4 cm, Período: π/4 segundos, Frecuencia: 4 Hz",
+                    "B) Velocidad Máxima: 0.15 m/s",
+                    "C) Desplazamiento: 0 m",
+                    "B) Amplitud: 1.6 m",
+                    "B) Frecuencia Angular: 10π rad/s, Fase Inicial: π/2 radianes"
+                ];
+                document.getElementById("resultado").innerHTML = "Fallaste. La respuesta correcta es: " + respuestas[pregunta - 1];
+                document.body.style.backgroundColor = "#FF5733";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 5000);
+            }
+            document.getElementById("pregunta" + pregunta).style.display = "none";
+        }
+    </script>
+</body>
+</html>

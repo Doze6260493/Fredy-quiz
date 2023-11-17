@@ -1,0 +1,119 @@
+x<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #FFBF00;
+            transition: background-color 0.5s;
+        }
+        }
+
+        h1 {
+            background-color: #FF5733;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .pregunta {
+            margin: 20px;
+        }
+
+        button {
+            background-color: #0F4E7D;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba tus conocimientos de funciones matemáticas</h1>
+    <div class="pregunta" id="pregunta1">
+        <p>1. ¿Cuál es la definición de una función algebraica?</p>
+        <button onclick="verificarRespuesta(0, 1)">a) Una función que involucra radicales</button>
+        <button onclick="verificarRespuesta(1, 1)">b) Una función que se puede expresar como un polinomio en una o más variables</button>
+        <button onclick="verificarRespuesta(0, 1)">c) Una función que se basa en logaritmos</button>
+    </div>
+    <div class="pregunta" id="pregunta2">
+        <p>2. ¿Cuál es la definición de una función polinómica?</p>
+        <button onclick="verificarRespuesta(0, 2)">a) Una función que involucra radicales</button>
+        <button onclick="verificarRespuesta(1, 2)">b) Una función que se puede expresar como una razón de dos polinomios</button>
+        <button onclick="verificarRespuesta(0, 2)">c) Una función que se basa en logaritmos</button>
+    </div>
+    <div class="pregunta" id="pregunta3">
+        <p>3. ¿Cuál es la definición de una función racional?</p>
+        <button onclick="verificarRespuesta(0, 3)">a) Una función que involucra radicales</button>
+        <button onclick="verificarRespuesta(1, 3)">b) Una función que se puede expresar como una razón de dos polinomios</button>
+        <button onclick="verificarRespuesta(0, 3)">c) Una función que se basa en logaritmos</button>
+    </div>
+    <div class="pregunta" id="pregunta4">
+        <p>4. ¿Cuál es la definición de una función radical?</p>
+        <button onclick="verificarRespuesta(0, 4)">a) Una función que involucra la constante π (pi)</button>
+        <button onclick="verificarRespuesta(1, 4)">b) Una función que se puede expresar como una razón de dos polinomios</button>
+        <button onclick="verificarRespuesta(0, 4)">c) Una función que se basa en logaritmos</button>
+    </div>
+    <div class="pregunta" id="pregunta5">
+        <p>5. ¿Cuál es la definición de una función trascendente?</p>
+        <button onclick="verificarRespuesta(0, 5)">a) Una función que involucra la constante e</button>
+        <button onclick="verificarRespuesta(0, 5)">b) Una función que se puede expresar como una razón de dos polinomios</button>
+        <button onclick="verificarRespuesta(1, 5)">c) Una función que no es algebraica, es decir, no se puede expresar como un polinomio en una o más variables</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="contador">
+        Preguntas correctas: <span id="correctas">0</span> | Preguntas incorrectas: <span id="incorrectas">0</span>
+    </div>
+
+    <script>
+        let preguntasRespondidas = [false, false, false, false, false];
+        let preguntasCorrectas = 0;
+        let preguntasIncorrectas = 0;
+
+        function verificarRespuesta(respuesta, pregunta) {
+            if (preguntasRespondidas[pregunta - 1]) {
+                return;
+            }
+
+            preguntasRespondidas[pregunta - 1] = true;
+
+            if (respuesta === 1) {
+                preguntasCorrectas++;
+                document.getElementById("correctas").textContent = preguntasCorrectas;
+                document.getElementById("resultado").innerHTML = "¡Bien hecho! Respuesta correcta.";
+                document.body.style.backgroundColor = "#39FF14";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 3000);
+            } else {
+                preguntasIncorrectas++;
+                document.getElementById("incorrectas").textContent = preguntasIncorrectas;
+                document.getElementById("resultado").innerHTML = "Fallaste. La respuesta correcta es: " + obtenerRespuestaCorrecta(pregunta);
+                document.body.style.backgroundColor = "#FF5733";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 5000);
+            }
+        }
+
+        function obtenerRespuestaCorrecta(pregunta) {
+            const respuestas = [
+                "b) Una función que se puede expresar como un polinomio en una o más variables",
+                "b) Una función que se puede expresar como una razón de dos polinomios",
+                "b) Una función que se puede expresar como una razón de dos polinomios",
+                "b) Una función que se puede expresar como una razón de dos polinomios",
+                "c) Una función que no es algebraica, es decir, no se puede expresar como un polinomio en una o más variables"
+            ];
+            return respuestas[pregunta - 1];
+        }
+    </script>
+</body>
+</html>

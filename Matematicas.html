@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ff004cc4;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            background-color: #0F4E7D;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .pregunta {
+            margin: 20px;
+        }
+
+        button {
+            background-color: #FF5733;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        #contador {
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba tus conocimientos de coordenadas</h1>
+    <div class="pregunta" id="pregunta1">
+        <p>1. ¿Cuál es la coordenada x en el punto donde se cruza el eje Y en un sistema de coordenadas cartesianas?</p>
+        <button onclick="verificarRespuesta(0, 1)">a) -1</button>
+        <button onclick="verificarRespuesta(1, 1)">b) 0</button>
+        <button onclick="verificarRespuesta(0, 1)">c) 1</button>
+    </div>
+    <div class="pregunta" id="pregunta2">
+        <p>2. En un sistema de coordenadas cartesianas, si un punto se encuentra en el segundo cuadrante, ¿cuál de las siguientes afirmaciones es cierta?</p>
+        <button onclick="verificarRespuesta(1, 2)">a) Su coordenada x es positiva y su coordenada y es negativa.</button>
+        <button onclick="verificarRespuesta(0, 2)">b) Ambas coordenadas son positivas.</button>
+        <button onclick="verificarRespuesta(0, 2)">c) Ambas coordenadas son negativas.</button>
+    </div>
+    <div class="pregunta" id="pregunta3">
+        <p>3. Si tienes un punto en el plano cartesiano con coordenadas (3, -4), ¿en qué cuadrante se encuentra?</p>
+        <button onclick="verificarRespuesta(0, 3)">a) Primer cuadrante</button>
+        <button onclick="verificarRespuesta(0, 3)">b) Segundo cuadrante</button>
+        <button onclick="verificarRespuesta(0, 3)">c) Tercer cuadrante</button>
+        <button onclick="verificarRespuesta(1, 3)">d) Cuarto cuadrante</button>
+    </div>
+    <div class="pregunta" id="pregunta4">
+        <p>4. ¿Cuál es la distancia entre los puntos (1, 3) y (4, 7) en el plano cartesiano?</p>
+        <button onclick="verificarRespuesta(0, 4)">a) 3</button>
+        <button onclick="verificarRespuesta(0, 4)">b) 4</button>
+        <button onclick="verificarRespuesta(1, 4)">c) 5</button>
+        <button onclick="verificarRespuesta(0, 4)">d) 6</button>
+    </div>
+    <div class="pregunta" id="pregunta5">
+        <p>5. Si el punto P(2, 5) se refleja sobre el eje X, ¿cuál será su nueva ubicación?</p>
+        <button onclick="verificarRespuesta(1, 5)">a) (2, -5)</button>
+        <button onclick="verificarRespuesta(0, 5)">b) (-2, 5)</button>
+        <button onclick="verificarRespuesta(0, 5)">c) (-2, -5)</button>
+        <button onclick="verificarRespuesta(0, 5)">d) (2, 5)</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="contador">
+        Preguntas correctas: <span id="correctas">0</span> | Preguntas incorrectas: <span id="incorrectas">0</span>
+    </div>
+
+    <script>
+        let preguntasRespondidas = [false, false, false, false, false];
+        let preguntasCorrectas = 0;
+        let preguntasIncorrectas = 0;
+
+        function verificarRespuesta(respuesta, pregunta) {
+            if (respuesta === 1) {
+                preguntasCorrectas++;
+                document.getElementById("correctas").textContent = preguntasCorrectas;
+                document.getElementById("resultado").innerHTML = "¡Bien hecho! Respuesta correcta.";
+                document.body.style.backgroundColor = "#39FF14";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 3000);
+            } else {
+                preguntasIncorrectas++;
+                document.getElementById("incorrectas").textContent = preguntasIncorrectas;
+                const respuestas = [1, 2, 3, 4, 5];
+                document.getElementById("resultado").innerHTML = "Fallaste. La respuesta correcta es: " + obtenerRespuestaCorrecta(respuestas[pregunta - 1]);
+                document.body.style.backgroundColor = "#FF5733";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 5000);
+            }
+            document.getElementById("pregunta" + pregunta).style.display = "none";
+        }
+
+        function obtenerRespuestaCorrecta(pregunta) {
+            const respuestas = [
+                "b) 0",
+                "a) Su coordenada x es positiva y su coordenada y es negativa.",
+                "c) Tercer cuadrante",
+                "c) 5",
+                "a) (2, -5)"
+            ];
+            return respuestas[pregunta - 1];
+        }
+    </script>
+</body>
+</html>

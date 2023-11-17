@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ff004cc4;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            background-color: #FDE54D;
+            color: #333;
+            padding: 10px;
+        }
+
+        .pregunta {
+            margin: 20px;
+        }
+
+        .respuesta {
+            background-color: #0F4E7D;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        #contador {
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba tus conocimientos de física: Fuerza Neta, Fuerza de Fricción y Aceleración</h1>
+    <div class="pregunta" id="pregunta1">
+        <p>Pregunta 1: Si un objeto tiene una fuerza aplicada  de 70 N y una fuerza de friccion  de 10 N, ¿cuál es la fuerza neta, la fuerza de fricción y la aceleración (suponiendo una masa de 5 kg)?</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 1)">A) Fuerza Neta: 70 N, Fuerza de Fricción: 10 N, Aceleración: 14 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 1)">B) Fuerza Neta: 60 N, Fuerza de Fricción: 10 N, Aceleración: 12 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 1)">C) Fuerza Neta: 60 N, Fuerza de Fricción: 20 N, Aceleración: 10 m/s²</button>
+    </div>
+    <div class="pregunta" id="pregunta2">
+        <p>Pregunta 2: Si un objeto tiene una fuerza aplicada de 100 N y una fuerza  de friccion de 20 N, ¿cuál es la fuerza neta, la fuerza de fricción y la aceleración (suponiendo una masa de 8 kg)?</p>
+        <button class "respuesta" onclick="verificarRespuesta(0, 2)">A) Fuerza Neta: 100 N, Fuerza de Fricción: 20 N, Aceleración: 14 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 2)">B) Fuerza Neta: 80 N, Fuerza de Fricción: 20 N, Aceleración: 10 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 2)">C) Fuerza Neta: 80 N, Fuerza de Fricción: 10 N, Aceleración: 12 m/s²</button>
+    </div>
+    <div class="pregunta" id="pregunta3">
+        <p>Pregunta 3: Si un objeto tiene una fuerza aplicada de 40 N y una fuerza de friccion  de 30 N, ¿cuál es la fuerza neta, la fuerza de fricción y la aceleración (suponiendo una masa de 6 kg)?</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 3)">A) Fuerza Neta: 10 N, Fuerza de Fricción: 30 N, Aceleración: 1.67 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 3)">B) Fuerza Neta: 40 N, Fuerza de Fricción: 30 N, Aceleración: 2.5 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 3)">C) Fuerza Neta: 10 N, Fuerza de Fricción: 40 N, Aceleración: 2 m/s²</button>
+    </div>
+    <div class="pregunta" id="pregunta4">
+        <p>Pregunta 4: Si un objeto tiene una fuerza aplicada  de 90 N y una fuerza de friccion  de 50 N, ¿cuál es la fuerza neta, la fuerza de fricción y la aceleración (suponiendo una masa de 7 kg)?</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 4)">A) Fuerza Neta: 40 N, Fuerza de Fricción: 50 N, Aceleración: 5.71 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 4)">B) Fuerza Neta: 90 N, Fuerza de Fricción: 50 N, Aceleración: 7.14 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 4)">C) Fuerza Neta: 40 N, Fuerza de Fricción: 90 N, Aceleración: 6 m/s²</button>
+    </div>
+    <div class="pregunta" id="pregunta5">
+        <p>Pregunta 5: Si un objeto tiene una fuerza aplicada  de 120 N y una fuerza  de friccion de 80 N, ¿cuál es la fuerza neta, la fuerza de fricción y la aceleración (suponiendo una masa de 9 kg)?</p>
+        <button class="respuesta" onclick="verificarRespuesta(0, 5)">A) Fuerza Neta: 40 N, Fuerza de Fricción: 80 N, Aceleración: 4.44 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(1, 5)">B) Fuerza Neta: 40 N, Fuerza de Fricción: 120 N, Aceleración: 6 m/s²</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 5)">C) Fuerza Neta: 120 N, Fuerza de Fricción: 80 N, Aceleración: 8.89 m/s²</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="contador">
+        Preguntas correctas: <span id="correctas">0</span> | Preguntas incorrectas: <span id="incorrectas">0</span>
+    </div>
+
+    <script>
+        let preguntasRespondidas = [false, false, false, false, false];
+        let preguntasCorrectas = 0;
+        let preguntasIncorrectas = 0;
+
+        function verificarRespuesta(respuesta, pregunta) {
+            if (respuesta === 1) {
+                preguntasCorrectas++;
+                document.getElementById("correctas").textContent = preguntasCorrectas;
+                document.getElementById("resultado").innerHTML = "¡Bien hecho! Respuesta correcta.";
+                document.body.style.backgroundColor = "#39FF14";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 3000);
+            } else {
+                preguntasIncorrectas++;
+                document.getElementById("incorrectas").textContent = preguntasIncorrectas;
+                const respuestas = [
+                    "B) Fuerza Neta: 60 N, Fuerza de Fricción: 10 N, Aceleración: 12 m/s²",
+                    "B) Fuerza Neta: 80 N, Fuerza de Fricción: 20 N, Aceleración: 10 m/s²",
+                    "A) Fuerza Neta: 10 N, Fuerza de Fricción: 30 N, Aceleración: 1.67 m/s²",
+                    "A) Fuerza Neta: 40 N, Fuerza de Fricción: 50 N, Aceleración: 5.71 m/s²",
+                    "B) Fuerza Neta: 40 N, Fuerza de Fricción: 120 N, Aceleración: 6 m/s²"
+                ];
+                document.getElementById("resultado").innerHTML = "Fallaste. La respuesta correcta es: " + respuestas[pregunta - 1];
+                document.body.style.backgroundColor = "#FF5733";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 5000);
+            }
+            document.getElementById("pregunta" + pregunta).style.display = "none";
+        }
+    </script>
+</body>
+</html>

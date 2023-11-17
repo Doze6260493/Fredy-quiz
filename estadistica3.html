@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #0F4E7D;
+            color: #fff;
+        }
+
+        .nivel {
+            background-color: #FDE54D;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+        }
+
+        button {
+            background-color: #39FF14;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer.
+        }
+
+        button:hover {
+            background-color: #00A200;
+        }
+
+        .mensaje {
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nivel 3</h1>
+    <div class="nivel">
+        <p>Pregunta 1: En una urna, hay 6 bolas rojas y 4 bolas verdes. Si seleccionas dos bolas al azar sin reemplazo, ¿cuál es la probabilidad de que ambas sean rojas?</p>
+        <input type="text" id="respuesta1">
+        <button onclick="verificarRespuesta(1, '1/3')">Verificar</button>
+    </div>
+
+    <div class="nivel">
+        <p>Pregunta 2: En una baraja de cartas, hay 13 cartas de tréboles, 9 cartas de corazones y 8 cartas de diamantes. Si seleccionas dos cartas al azar sin reemplazo, ¿cuál es la probabilidad de que ambas sean cartas de corazones?</p>
+        <input type="text" id="respuesta2">
+        <button onclick="verificarRespuesta(2, '8/97')">Verificar</button>
+    </div>
+
+    <div class="nivel">
+        <p>Pregunta 3: En una urna, hay 3 bolas rojas, 5 bolas verdes y 2 bolas azules. Si seleccionas tres bolas al azar sin reemplazo, ¿cuál es la probabilidad de que al menos una sea roja?</p>
+        <input type="text" id "respuesta3">
+        <button onclick="verificarRespuesta(3, '11/12')">Verificar</button>
+    </div>
+
+    <div class="nivel">
+        <p>Pregunta 4: Lanzas dos dados justos de 6 caras. ¿cuál es la probabilidad de que la suma de los números en los dos dados sea 7?</p>
+        <input type="text" id="respuesta4">
+        <button onclick="verificarRespuesta(4, '1/6')">Verificar</button>
+    </div>
+
+    <div class="nivel">
+        <p>Pregunta 5: En una urna, hay 7 bolas rojas y 3 bolas verdes. Si seleccionas una bola al azar, anotas su color y la devuelves a la urna. Luego, seleccionas una segunda bola al azar. ¿cuál es la probabilidad de que ambas bolas sean rojas?</p>
+        <input type="text" id="respuesta5">
+        <button onclick="verificarRespuesta(5, '49/100')">Verificar</button>
+    </div>
+
+    <div class="mensaje" id="mensaje1"></div>
+    <div class="mensaje" id="mensaje2"></div>
+    <div class="mensaje" id="mensaje3"></div>
+    <div class="mensaje" id="mensaje4"></div>
+    <div class="mensaje" id="mensaje5"></div>
+
+    <script>
+        // Contadores por nivel
+        let contadorNivel1 = 0;
+        let contadorNivel2 = 0;
+        let contadorNivel3 = 0;
+
+        function actualizarContadorNivel() {
+            document.getElementById("contador1").textContent = "Contador nivel 1: " + contadorNivel1;
+            document.getElementById("contador2").textContent = "Contador nivel 2: " + contadorNivel2;
+            document.getElementById("contador3").textContent = "Contador nivel 3: " + contadorNivel3;
+        }
+
+        function verificarRespuesta(nivel, respuestaCorrecta) {
+            const respuesta = document.getElementById("respuesta" + nivel).value;
+            const mensaje = document.getElementById("mensaje" + nivel);
+
+            if (respuesta === respuestaCorrecta) {
+                mensaje.textContent = "¡Correcto! Avanzas al siguiente nivel.";
+                // Incrementar el contador del nivel actual
+                if (nivel === 1) {
+                    contadorNivel1++;
+                } else if (nivel === 2) {
+                    contadorNivel2++;
+                } else if (nivel === 3) {
+                    contadorNivel3++;
+                }
+                // Actualizar los contadores en la página
+                actualizarContadorNivel();
+            } else {
+                mensaje.textContent = "¡Fallaste! La respuesta correcta era: " + respuestaCorrecta;
+            }
+        }
+    </script>
+</body>
+</html>

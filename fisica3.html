@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ff004cc4;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            background-color: #FDE54D;
+            color: #333;
+            padding: 10px;
+        }
+
+        .pregunta {
+            margin: 20px;
+        }
+
+        .respuesta {
+            background-color: #0F4E7D;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        #contador {
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba tus conocimientos unidades de medida en física</h1>
+    <div class="pregunta" id="pregunta1">
+      <p>Pregunta 1: Si Fredy está a 1 km de distancia de la estación del bus, ¿cuántos metros está la estación del bus de Fredy?</p>
+      <button class="respuesta" onclick="verificarRespuesta(1, 1)">A) 1000   m</button>
+      <button class="respuesta" onclick="verificarRespuesta(0, 1)">B) 10000  m</button>
+      <button class="respuesta" onclick="verificarRespuesta(0, 1)">C)  100 m</button>
+  </div>
+    <div class="pregunta" id="pregunta2">
+        <p>Pregunta 2: Si Fredy está a 4 millas de distancia de Dylan, ¿cuántos metros está Dylan de Fredy?</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 2)">A) 6437.38 m</button>
+        <button class "respuesta" onclick="verificarRespuesta(0, 2)">B) 12874.8 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 2)">C) 6759.245 m</button>
+    </div>
+    <div class="pregunta" id="pregunta3">
+        <p>Pregunta 3: Si a mi amigo inglés Harry me mide y me dice que mido 5.74147 pies, ¿cuánto es mi medida en metros?</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 3)">A) 1.75 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 3)">B) 1.6 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 3)">C) 1.7 m</button>
+    </div>
+    <div class="pregunta" id="pregunta4">
+        <p>Pregunta 4: Si un campo de fútbol americano mide 120 yardas, ¿cuántos metros mide el campo de fútbol?</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 4)">A) 109.728 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 4)">B) 100.753 m</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 4)">C) 110.855 m</button>
+    </div>
+    <div class="pregunta" id="pregunta5">
+        <p>Pregunta 5: Si un lápiz tiene una medida de 6.299213 pulgadas, ¿cuánto mide el lápiz en cm?</p>
+        <button class="respuesta" onclick="verificarRespuesta(1, 5)">A)  16.51 cm</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 5)">B) 15.34 cm</button>
+        <button class="respuesta" onclick="verificarRespuesta(0, 5)">C) 16.12 cm</button>
+    </div>
+     
+    <div id="resultado"></div>
+    <div id="contador">
+        Preguntas correctas: <span id="correctas">0</span> | Preguntas incorrectas: <span id="incorrectas">0</span>
+    </div>
+
+    <script>
+        let preguntasRespondidas = [false, false, false, false, false];
+        let preguntasCorrectas = 0;
+        let preguntasIncorrectas = 0;
+
+        function verificarRespuesta(respuesta, pregunta) {
+            if (respuesta === 1) {
+                preguntasCorrectas++;
+                document.getElementById("correctas").textContent = preguntasCorrectas;
+                document.getElementById("resultado").innerHTML = "¡Bien hecho! Respuesta correcta.";
+                document.body.style.backgroundColor = "#39FF14";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 3000);
+            } else {
+                preguntasIncorrectas++;
+                document.getElementById("incorrectas").textContent = preguntasIncorrectas;
+                const respuestas = [
+                    "A) 1000   m ",
+                    "A) 6437.38 m",
+                    "A) 1.75 m",
+                    "A) 109.728 m",
+                    "A)  16.51 cm"
+                ];
+                document.getElementById("resultado").innerHTML = "Fallaste. La respuesta correcta es: " + respuestas[pregunta - 1];
+                document.body.style.backgroundColor = "#FF5733";
+                setTimeout(function() {
+                    document.body.style.backgroundColor = "";
+                    document.getElementById("resultado").innerHTML = "";
+                }, 5000);
+            }
+            document.getElementById("pregunta" + pregunta).style.display = "none";
+        }
+    </script>
+</body>
+</html>
